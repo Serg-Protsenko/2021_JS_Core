@@ -31,3 +31,11 @@ function isPalindrome(str) {
 // alert(`" eye" palindrome is ${isPalindrome(' eye')}`)
 // alert(`"Yes" palindrome is ${isPalindrome('Yes')}`)
 
+function findVowels(str) {
+    return (str.match(/[aeiou]/ig) || []).length;
+}
+
+// alert(`"yes no " has ${findVowels('yes no ')} vowels.`);
+// alert(`"Hello, World!" has ${findVowels('Hello, World!')} vowels.`);
+// alert(`"Why?" has ${findVowels('Why?')} vowels.`);
+
