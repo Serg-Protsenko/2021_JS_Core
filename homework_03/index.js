@@ -27,20 +27,34 @@ function findVowels(str) {
 // console.log(`"Hello, World!" has ${findVowels('Hello, World!')} vowels.`);
 // console.log(`"Why?" has ${findVowels('Why?')} vowels.`);
 
-function myFilter(arr, callback) {
+// function myFilter(arr, callback) {
+//     const resultArr = [];
+//     for (let i = 0; i < arr.length; i++){
+//         const result = callback(arr[i], i, arr);
+//         if (result) {
+//             resultArr.push(arr[i]);
+//         }
+//     } return resultArr;
+// }
+
+
+Array.prototype.myFilter = function(callback, _this) {
     const resultArr = [];
-    for (let i = 0; i < arr.length; i++){
-        const result = callback(arr[i], i, arr);
-        if (result) {
-            resultArr.push(arr[i]);
+    
+    for (let i = 0; i < this.length; i++) {
+        if (typeof  _this === "object") {
+            if (!!callback.call(_this, this[i], i, this)) {
+                resultArr.push(this[i]);
+            }
+        } else {
+            if (!!callback(this[i], i, this)) {
+                resultArr.push(this[i]);
+            }
         }
-    } return resultArr;
+    }
+    return resultArr;
 }
 
 // const arrTest = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-// const isOdd = num => num % 2 !== 0;
-// console.log(`For array ${arrTest} odd numbers are ${myFilter(arrTest, isOdd)}.`);
-
-// const isEven = num => num % 2 === 0;
-// const evenArr = myFilter(arrTest, isEven);
-// console.log(`For array ${arrTest} odd numbers are ${evenArr}.`);
+// console.log(`For array ${arrTest} odd numbers are ${arrTest.myFilter(num => num % 2 !== 0)}.`);
+// console.log(`For array ${arrTest} even numbers are ${arrTest.myFilter(num => num % 2 === 0)}.`);
