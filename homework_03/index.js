@@ -4,26 +4,14 @@ function isPalindrome(str) {
   return str.split("").reverse().join("");
     }
     
-    function deleteWhitespaces(str) {
-        return str.split(' ').join('');
-    }
-
-    function deletePunct(str) {
+    function leaveOnlyLetters(str) {
         return str.replace(/[^a-zA-Z]/g, "");
     }
 
-    const strWithoutSpace = deleteWhitespaces(str);
-    const strWithoutPunct = deletePunct(strWithoutSpace);
-    const processedStr = strWithoutPunct.toLowerCase();
-
+    const processedStr = leaveOnlyLetters(str).toLowerCase();
     const reverseStr = reverseString(processedStr);
     
-    if (processedStr === reverseStr) {
-        return true;
-    } else {
-        return false;
-    }
-
+    return processedStr === reverseStr
 }
 
 // console.log(`"Ann,a" palindrome is ${isPalindrome('Ann,a')}`)
