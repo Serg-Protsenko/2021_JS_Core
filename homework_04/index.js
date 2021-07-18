@@ -6,10 +6,11 @@ function stringToObject (str) {
 
 
 function createDebounceFunction(callback, ms) {
-    let alreadyRun = false;
+    let alreadyRun ;
     return () => {
-        if (alreadyRun) clearTimeout(alreadyRun);
-        alreadyRun = setTimeout(callback, ms);
+        const anotherCall = () => callback.apply(this, arguments)
+        clearTimeout(alreadyRun);
+        alreadyRun = setTimeout(anotherCall, ms);
     }
 }
 
