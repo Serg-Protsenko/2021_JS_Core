@@ -1,6 +1,5 @@
-function stringToObject (str){
-    const array = str.split('.').reduceRight((previous, current) => ({ [current]: previous }), null);
-    return array;
+function stringToObject (str) {
+    return str.split('.').reduceRight((previous, current) => ({ [current]: previous }), null);
 }
 
 // console.log(stringToObject('a.b.c.d'));
@@ -21,7 +20,7 @@ function createDebounceFunction(callback, ms) {
 
 
 Function.prototype.myBind = function (obj, ...args) {
-  let func = this;
+  const func = this;
   return function (...newArgs) {
     func.apply(obj, [...args, ...newArgs]);
   };
