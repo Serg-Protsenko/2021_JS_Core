@@ -27,7 +27,6 @@ Function.prototype.myBind = function (obj, ...args) {
   };
 };
 
-
 // const person = {
 //   name: 'Anton',
 // }
