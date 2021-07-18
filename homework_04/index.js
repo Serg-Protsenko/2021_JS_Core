@@ -19,3 +19,22 @@ function createDebounceFunction(callback, ms) {
 // debounceLog100()
 // setTimeout(debounceLog100, 200);
 
+
+Function.prototype.myBind = function (obj, ...args) {
+  let func = this;
+  return function (...newArgs) {
+    func.apply(obj, [...args, ...newArgs]);
+  };
+};
+
+
+// const person = {
+//   name: 'Anton',
+// }
+
+// function info(phone, email) {
+//     console.log(`Name: ${this.name}, Tel: ${phone}, Email: ${email}`);  
+// }
+
+// let newFunc = info.myBind(person, '+3803243247973')
+// newFunc('anton@gmail.com')
