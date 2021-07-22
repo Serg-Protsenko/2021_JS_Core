@@ -17,7 +17,6 @@ button.addEventListener("click", () => {
 function fakeRequest(url) {
   return new Promise((res, rej) => {
     const delayTime = Math.floor(Math.random() * 1000) + 1;
-
     setTimeout(() => res(url), delayTime);
   });
 }
@@ -28,10 +27,8 @@ async function promiseAll(urls) {
   for (let i = 0; i < urls.length; i++) {
     const response = await fakeRequest(urls[i]);
     result.push(response);
-
     console.log(`Got response for url: ${urls[i]}`);
   }
-
   return Promise.resolve(result);
 }
 
