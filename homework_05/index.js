@@ -22,24 +22,48 @@ function fakeRequest(url) {
   });
 }
 
-async function promiseAll(urls) {
-  const result = [];
+// async function promiseAll(urls) {
+//   const result = [];
 
-  urls.forEach(async (url) => {
-    const response = await fakeRequest(url);
-    result.push(response);
-    console.log(`Got response for url: ${url}`);
+//   urls.forEach(async (url) => {
+//     const response = await fakeRequest(url);
+//     result.push(response);
+//     console.log(`Got response for url: ${url}`);
+//   });
+
+//   //   for (let i = 0; i < urls.length; i++) {
+//   //     const response = await fakeRequest(urls[i]);
+//   //     result.push(response);
+//   //     console.log(`Got response for url: ${urls[i]}`);
+//   //   }
+//   return Promise.resolve(result);
+// }
+
+// const urls = ["1", "2", "3", "4", "5"];
+// promiseAll(urls).then((res) => {
+//   console.log(`All urls was processed. Result: ${JSON.stringify(res)}`);
+// });
+
+function resolveUrlList(urlsArray) {
+  const urlRequestResults = [];
+
+  return new Promise((res, rej) => {
+    urlsArray.forEach((url) => {
+      fakeRequest(url)
+        .then((result) => {
+          urlRequestResults.push(result);
+          console.log(`Got response for url: ${url}`);
+
+          if (urlRequestResults.length === urlsArray.length) {
+            res(urlRequestResults);
+          }
+        })
+        .catch((err) => rej(err));
+    });
   });
-
-  //   for (let i = 0; i < urls.length; i++) {
-  //     const response = await fakeRequest(urls[i]);
-  //     result.push(response);
-  //     console.log(`Got response for url: ${urls[i]}`);
-  //   }
-  return Promise.resolve(result);
 }
 
 const urls = ["1", "2", "3", "4", "5"];
-promiseAll(urls).then((res) => {
+resolveUrlList(urls).then((res) => {
   console.log(`All urls was processed. Result: ${JSON.stringify(res)}`);
 });
