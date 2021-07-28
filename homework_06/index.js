@@ -43,19 +43,16 @@ function DefaultUser(name, isAdmin) {
   fnUser.apply(this, arguments);
   // method override
   this.getName = function () {
-    console.log(`My name is ${this.name}`);
-    return this.name;
+    return `My name is ${this.name}`;
   };
   // method extension
-  this.parentGetIsAdmin = this.getIsAdmin;
+  const parentGetIsAdmin = this.getIsAdmin;
   this.getIsAdmin = function () {
-    console.log(`I'm an admin - ${this.isAdmin}`);
     return parentGetIsAdmin.call(this);
   };
   // new method
   this.getAllData = function () {
-    console.log(`My name is ${this.name} and I'm an admin - ${this.isAdmin}`);
-    return `${this.name} ${this.isAdmin}`;
+    return `My name is ${this.name} and I'm an admin - ${this.isAdmin}`;
   };
 }
 
@@ -68,9 +65,7 @@ function Admin(name, isAdmin, isBubo) {
 Admin.prototype = Object.create(fnUser.prototype);
 Admin.prototype.constructor = Admin;
 Admin.prototype.getName = function () {
-  console.log(
-    `My name is ${this.name} and I'm an admin - ${this.isAdmin} and I have a bubo - ${this.isBubo}`
-  );
+  return `My name is ${this.name} and I'm an admin - ${this.isAdmin} and I have a bubo - ${this.isBubo}`;
 };
 
 // const vasya = new User("Vasya", false);
@@ -84,7 +79,7 @@ Admin.prototype.getName = function () {
 // console.log(anatolii.getName());
 
 // const kolya = new DefaultUser("Kolya", false);
-// kolya.getAllData();
+// console.log(kolya.getAllData());
 
 // const olya = new Admin("Olya", true, true);
-// olya.getName();
+// console.log(olya.getName());
