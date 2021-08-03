@@ -1,5 +1,5 @@
 html {
-  font-size: 62.5%;
+  font-size: 0.65rem;
   box-sizing: border-box;
 }
 
@@ -112,7 +112,4 @@ button:hover {
   text-orientation: sideways-right;
   color: rgb(20, 19, 20);
   float: left;
-  /* position: absolute;
-  bottom: 50%;
-  left: 100%; */
 }

@@ -45,7 +45,6 @@ function handleOperator(nextOperator) {
   } else if (operator) {
     const result = calculate(firstOperand, inputValue, operator);
     if (result !== "*" || result !== "/" || result !== "+" || result !== "-") {
-      //   console.log(result);
       addToHistory("=" + result + "<br>");
     }
 
@@ -58,16 +57,16 @@ function handleOperator(nextOperator) {
 }
 
 function calculate(firstOperand, secondOperand, operator) {
-  if (operator === "+") {
-    return firstOperand + secondOperand;
-  } else if (operator === "-") {
-    return firstOperand - secondOperand;
-  } else if (operator === "*") {
-    return firstOperand * secondOperand;
-  } else if (operator === "/") {
-    return firstOperand / secondOperand;
+  switch (operator) {
+    case "+":
+      return firstOperand + secondOperand;
+    case "-":
+      return firstOperand - secondOperand;
+    case "*":
+      return firstOperand * secondOperand;
+    case "/":
+      firstOperand / secondOperand;
   }
-
   return secondOperand;
 }
 
@@ -82,8 +81,6 @@ function resetCalculator() {
 function updateDisplay() {
   const display = document.querySelector(".calculator-screen");
   display.value = calculator.displayValue;
-  //   console.log(display.value);
-  //   addToHistory(display.value);
 }
 
 updateDisplay();
@@ -117,11 +114,8 @@ keys.addEventListener("click", (event) => {
   }
 
   updateDisplay();
-  //   addToHistory(target.value);
-  //   console.log(typeof target.value);
 
   if (target.value !== "=" && target.value !== "all-clear") {
-    // console.log(target.value);
     addToHistory(target.value);
   }
 });
